@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { BrowserRouter, Route, Link, Routes } from 'react-router-dom';
+import Home from './demo/Home'
+import UserList from './demo/UserList'
+import UserAdd from './demo/UserAdd'
+import {KeepAliveProvider, withKeepAlive} from './keep-alive'
+const KeepAliveHome = withKeepAlive(Home, {cacheId: 'Home'})
+const KeepAliveUserList = withKeepAlive(UserList, {cacheId: 'UserList', scroll: true})
+const KeepAliveUserAdd = withKeepAlive(UserAdd, {cacheId: 'UserAdd'})
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <BrowserRouter>
+      <KeepAliveProvider>
+        <ul>
+          <li><Link replace to="/">首页</Link></li>
+          <li><Link replace to="/list">用户列表</Link></li>
+          <li><Link replace to="/add">添加用户</Link></li>
+        </ul>
+        <Routes>
+          <Route path="/" element={<KeepAliveHome />}/>
+          <Route path="/list" element={<KeepAliveUserList />} />
+          <Route path="/add" element={<KeepAliveUserAdd />} />
+        </Routes>
+      </KeepAliveProvider>
+    </BrowserRouter>
+  )
 }
+export default App
 
-export default App;

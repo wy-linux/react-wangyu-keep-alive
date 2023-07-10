@@ -1,26 +1,12 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
+    "target": "es6",
+    "module": "commonjs",
+    "outDir": "dist",
+    "declaration": true, //生成.d.ts声明文件
     "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx"
+    "esModuleInterop": true,
+    "jsx": "react" //启用对 TSX 文件的编译支持
   },
-  "include": [
-    "src"
-  ]
+  "include": ["src/keep-alive/"]
 }
